@@ -1,5 +1,5 @@
 // JavaScript for a cool 2d shooting Game
-// Followed Html Canvas Tutorial
+// Followed Html Canvas Tutorial - https://www.youtube.com/watch?v=eI9idPTT0c4
 // By DuskyElf
 
 // Canvas Initilazation
