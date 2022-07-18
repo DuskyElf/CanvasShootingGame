@@ -5,9 +5,22 @@
             body {
                 margin: 0;
             }
+
+            .content {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                color: white;
+                font-size: 175%;
+                font-family: cursive;
+                user-select: none;
+            }
         </style>
     </head>
     <body>
+        <div class="content">
+            Score: <span id="score">0</span>
+        </div>
         <canvas id="MainCanvas"></canvas>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="main.js"></script>

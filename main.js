@@ -5,6 +5,7 @@
 // Canvas Initilazation
 const canvas = document.getElementById("MainCanvas")
 const ctx = canvas.getContext("2d")
+const scoreEl = document.getElementById("score")
 canvas.width = innerWidth
 canvas.height = innerHeight
 
@@ -118,6 +119,7 @@ const player = new Player(x, y, 10, 'white')
 const projectiles = []
 const enemies = []
 const particles = []
+let score = 0
 
 // --------------- Main Functions ---------------
 
@@ -185,6 +187,15 @@ function animate() {
             projectile.y + projectile.radius < 0 ||
             projectile.y - projectile.radius > canvas.height
             ){
+            
+            // Updating Score
+            if (score - 200 > 0){
+                score -= 200
+                scoreEl.innerText = score
+            } else{
+                score = 0
+                scoreEl.innerText = score
+            }
             setTimeout(() => {
                 projectiles.splice(index, 1)}, 0)
         }
@@ -220,12 +231,18 @@ function animate() {
 
                 // Despawning Enemies and Projectiles
                 if (enemy.radius - 10 > 7) {
+                    // Updating Score
+                    score += 100
+                    scoreEl.innerText = score
                     gsap.to(enemy, {
                         radius: enemy.radius - 10
                     })
                     setTimeout(() => {
                         projectiles.splice(pro_index, 1)}, 0)
                 } else {
+                    // Updating Score
+                    score += 250
+                    scoreEl.innerText = score
                     setTimeout(() => {
                         enemies.splice(index, 1)
                         projectiles.splice(pro_index, 1)}, 0)
