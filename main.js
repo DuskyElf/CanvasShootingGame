@@ -6,8 +6,12 @@
 const canvas = document.getElementById("MainCanvas")
 const ctx = canvas.getContext("2d")
 const scoreEl = document.getElementById("score")
+const restartMenu = document.getElementById("restartMenu")
+const endScore = document.getElementById("endScore")
+const restartBtn = document.getElementsByClassName("btn")
 canvas.width = innerWidth
 canvas.height = innerHeight
+restartMenu.style.display = 'none'
 
 // --------------- Classes ----------------
 
@@ -115,10 +119,10 @@ const x = canvas.width / 2
 const y = canvas.height / 2
 
 // Global Objects
-const player = new Player(x, y, 10, 'white')
-const projectiles = []
-const enemies = []
-const particles = []
+let player = new Player(x, y, 10, 'white')
+let projectiles = []
+let enemies = []
+let particles = []
 let score = 0
 
 // --------------- Main Functions ---------------
@@ -209,6 +213,9 @@ function animate() {
         const dist = Math.hypot(player.x - enemy.x,
             player.y - enemy.y)
         if (dist - enemy.radius - player.radius < 1){
+            restartMenu.style.display = ''
+            endScore.innerText = score
+            
             cancelAnimationFrame(animationID)
         }
 
@@ -250,6 +257,17 @@ function animate() {
             }
         })
     })
+}
+
+function restart(){
+    player = new Player(x, y, 10, 'white')
+    projectiles = []
+    enemies = []
+    particles = []
+    score = 0
+    restartMenu.style.display = 'none'
+    scoreEl.innerText = score
+    animate()
 }
 
 // Event Listener
